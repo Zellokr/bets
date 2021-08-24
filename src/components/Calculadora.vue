@@ -288,6 +288,7 @@ export default {
         this.messageError = "Inserta bien los importes";
       }
     },
+    // func para truncar
     trunc(x, posiciones = 2) {
       var s = x.toString();
       var decimalLength = s.indexOf(".") + 1;
