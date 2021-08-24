@@ -293,7 +293,7 @@ export default {
         }
       } else {
         this.sur = null;
-        this.messageError = "Inserta bien los importes";
+        this.messageError = "** Inserta bien los importes **";
       }
     },
     trunc(x, posiciones = 2) {
