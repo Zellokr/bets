@@ -1,7 +1,14 @@
 <template>
   <div class="d-flex justify-space-around justify-center align-start">
     <div>
-      <v-simple-table dark dense fixed-header height="500px" class="my-4">
+      <v-simple-table
+        dark
+        dense
+        fixed-header
+        height="500px"
+        class="my-4"
+        @click=""
+      >
         <template v-slot:default>
           <thead>
             <tr>
@@ -55,7 +62,7 @@
           >
           <span class="my-2 font-weight-bold"
             >Si lo haces, da igual que apuesta ganes que el beneficio será:
-            <b class="red--text">{{ this.apuesta1 * this.value1 }}€</b>
+            <b class="red--text">{{ this.total }}€</b>
           </span>
           <span class="font-weight-bold">
             o mejor dicho
@@ -99,6 +106,7 @@
         </v-simple-table>
       </template>
     </div>
+    <div></div>
   </div>
 </template>
 
@@ -117,6 +125,7 @@ export default {
       apuesta1: 0,
       apuesta2: 0,
       ganancia: 0,
+      total: 0,
       cuotas1: [
         {
           name: "1",
@@ -278,6 +287,7 @@ export default {
             this.apuesta1 * this.value1 -
             this.inversion
           ).toFixed(2);
+          this.total = (this.apuesta1 * this.value1).ToFixed(2);
         } else {
           this.sur = false;
         }
