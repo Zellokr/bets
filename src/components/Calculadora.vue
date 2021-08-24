@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-space-around justify-center align-start">
+  <div class="d-flex justify-space-around">
     <div>
       <v-simple-table dark dense fixed-header height="500px" class="my-4">
         <template v-slot:default>
@@ -23,8 +23,8 @@
       </v-simple-table>
     </div>
     <div>
-      <v-card elevation="4" outlined shaped tile class="my-8 py-8 px-8">
-        <div class="d-flex flex justify-center align-center">
+      <v-card elevation="4" outlined shaped tile class="my-8 py-8 px-6">
+        <div class="d-flex justify-center align-center">
           <div class="mx-4">Inversión</div>
           <v-text-field v-model="inversion" required></v-text-field>
         </div>
@@ -66,7 +66,7 @@
           <h2 class=" my-4 red--text">{{ this.messageError }}</h2>
         </div>
         <div v-else-if="this.sur === false" class="font-weight-bold">
-          <h2 class="font-weight-bold my-4 red--text">SUREBET ENCONTRADA</h2>
+          <h2 class="font-weight-bold my-4 red--text">SUREBET NO ENCONTRADA</h2>
         </div>
         <div class="d-flex flex-column justify-center align-center my-2">
           <v-btn color="error" class="mr-4 my-2" @click="prob">
@@ -99,7 +99,6 @@
         </v-simple-table>
       </template>
     </div>
-    <div></div>
   </div>
 </template>
 
@@ -117,8 +116,8 @@ export default {
       messageError: "",
       apuesta1: 0,
       apuesta2: 0,
-      ganancia: 0,
       total: 0,
+      ganancia: 0,
       cuotas1: [
         {
           name: "1",
@@ -270,7 +269,6 @@ export default {
       if (this.value1 != 0 && this.value2 != 0) {
         this.probabilidad = 1 / this.value1 + 1 / this.value2;
         this.probabilidad = this.trunc(this.probabilidad, 2);
-        console.log(this.probabilidad);
         const sum = (1 / this.probabilidad) * this.inversion;
         if (this.probabilidad < 1) {
           this.sur = true;
@@ -280,13 +278,14 @@ export default {
             this.apuesta1 * this.value1 -
             this.inversion
           ).toFixed(2);
-          this.total = (this.apuesta1 * this.value1).ToFixed(2);
+          this.total = this.apuesta1 * this.value1;
+          this.total = this.total.toFixed(2);
         } else {
           this.sur = false;
         }
       } else {
         this.sur = null;
-        this.messageError = "** Inserta bien los importes **";
+        this.messageError = "Inserta bien los importes";
       }
     },
     trunc(x, posiciones = 2) {
