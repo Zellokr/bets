@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-space-around">
+  <div class="d-flex justify-space-around align-center">
     <div>
       <v-simple-table dark dense fixed-header height="500px" class="my-4">
         <template v-slot:default>
